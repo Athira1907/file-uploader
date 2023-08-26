@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+
+}
+.container{
+    background-color: rgb(240, 179, 135);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 30px;
+    width: 600px;
+    height: 450px;
+    background-color: #fff;
+    border-radius: 6px;
+}
+header{
+    font-size: 30px;
+    text-align: center;
+    color: chocolate;
+font-weight: 600;
+}
+form{
+    width: 190px;
+    height: 100px;
+    border: 4px dashed chocolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: none;
+}
+form h5{
+    font-size: 16px;
+    color: chocolate;
+}
+li{
+    list-style: none;
+}
+.row{
+    width: 500px;
+    height: 50px;
+    background-color: rgb(200, 230, 230);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.row i{
+    font-size: 22px;
+}
+.progress-area .row .content{
+    width: 100%;
+    margin-left: 15px;
+}
+.progress-area .details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.uploaded-area .row .content{
+display: flex;
+margin-left: 15px;
+flex-direction: column;
+}
+.uploaded-area .row .details{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+.progress-bar .progress{
+    height: 100%;
+    width: 50%;
+    background-color: #6990f2;
+    border-radius: inherit;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <header>
+                File Uploader Javascript
+            </header>
+            <form action="#">
+               <input type="file" class="file-input" hidden>
+                <i class="fa-solid fa-cloud-arrow-up fa-beat-fade"
+                 style="color: chocolate;font-size: 50px;"></i>
+                 <br>
+                 <h5 style="cursor: pointer;">Browse File to Upload</h5>
+            </form>
+            <section class="progress-area">
+                <li class="row">
+                    <i class="fa-solid fa-file" style="font-size: 35px;color: rgb(80, 205, 243);"></i>
+                    <div class="content">
+                        <div class="details">
+                            <span class="name">image_01.png  uploading</span>
+                            <span class="percent">60%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                    </div>
+                    <!-- <i class="fa-solid fa-xmark"></i> -->
+                </li>
+             </section>
+             <section class="uploaded-area">
+<li class="row">
+    <i class="fa-solid fa-file" style="font-size: 35px;color: rgb(80, 205, 243);"></i>
+    <div class="content">
+        <div class="details">
+            <span class="name">image_01.png  uploaded</span>
+            <span class="size">50 KB</span>
+        </div>
+    </div>
+ <i class="fas fa-check"></i>
+</li>
+             </section>
+        </div>
+    </div>
+    
+</body>
+<script>
+const progressArea=document.querySelector('.progress-area'),
+ uploadedArea=document.querySelector('.uploaded-area'),
+ form=document.querySelector('form'),
+ fileInput=form.querySelector('.file-input')
+
+form.addEventListener("click" , ()=>{
+    fileInput.click()
+})
+fileInput.onchange=({target})=>{
+    //console.log(e);
+
+    //getting file and [0] this means if user has selected multiples files then get first only.
+let file=target.files[0]; 
+if(file){//if file is selected
+let  fileName=file.name  //gettting sseleccted file name
+uploadFile(fileName)  // calling uplaodFile witth passing file name as an argument
+
+console.log(file);
+console.log(fileName);
+
+}
+
+
+
+
+}
+function uploadFile(name){
+let xhr=new XMLHttpRequest();  //creating nnew xml obj(AJAX)
+xhr.open("POST","upload.php")
+xhr.send()
+}
+
+</script>
+</html>
